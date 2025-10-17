@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Weather App</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -13,10 +16,37 @@
         <h1>Weather App</h1>
     </nav>
     <main>
-        
+        <form id="form">
+            <input type="text" name="search" id="search" placeholder="Search for a City..." required>
+            <button type="submit" id="submit-btn">Search</button>
+        </form>
+        <section id="current-weather">
+            <div id="curent-location">
+                <p>New York City</p>
+                <p>10.00 am</p>
+                <p>60 C</p>
+            </div>
+        </section>
+        <section id="hourly-forecast">
+            <p>10am</p>
+            <p>73 C</p>
+            <p>sun Icon</p>
+        </section>
+        <section id="other-data">
+            <div>Humidity</div>
+            <div>Uv</div>
+            <div>Uv index</div>
+        </section>
+        <section id="seven-day-forecast">
+            <h2>7 Day Forecast</h2>
+            <div>
+                <p>date</p>
+                <p>temp</p>
+            </div>
+        </section>
     </main>
-    <footer>
-        <p>&copy Weather App</p>
+    <footer class="footer">
+        <p>&copy 2025 Weather App</p>
     </footer>
 </body>
 </html>
