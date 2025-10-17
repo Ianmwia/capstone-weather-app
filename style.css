@@ -34,9 +34,13 @@ nav h1{
 }
 /*main*/
 #form{
-    grid-column: 7 / 12;
+    grid-column: 8 / 13;
     grid-row: 1 / 2;
     padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 input, button{
     border-radius: 8px;
