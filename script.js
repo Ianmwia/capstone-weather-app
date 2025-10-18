@@ -42,7 +42,8 @@ async function fetchAndDisplayWeather(city) {
         //change time to location based
         const timeChange = weather.timezone
         const localTime = new Date((weather.dt + timeChange) *1000)
-        const locationTime = localTime.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+        //const locationTime = localTime.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+        const locationTime = localTime.toUTCString().slice(17,22)
 
         //append on html
         currentLocation.innerHTML = `
@@ -51,6 +52,9 @@ async function fetchAndDisplayWeather(city) {
             <p>${weather.main.temp.toFixed(1)} \u00B0C</p>
             <p>${weather.weather[0].main}</p>
         `
+
+        //clear input field
+        locationInput.value = ''
     }catch(error){
         console.error('error', error)
     }
