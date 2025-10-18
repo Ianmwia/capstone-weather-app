@@ -4,6 +4,7 @@ let apiKey = '36fd92a69321111547844661f619effd'
 const locationInput = document.getElementById('search')
 const form = document.getElementById('form')
 const currentLocation = document.getElementById('current-location')
+const HourlyForecast = document.getElementById('hourly-forecast')
 
 //event listener
 form.addEventListener('submit', (e)=>{
@@ -11,6 +12,7 @@ form.addEventListener('submit', (e)=>{
 
     const city = locationInput.value
     fetchAndDisplayWeather(city)
+    fetchAndDisplayHourlyData(city)
 })
 
 //geocode translate longitude and latitude
@@ -59,4 +61,37 @@ async function fetchAndDisplayWeather(city) {
         console.error('error', error)
     }
     
+}
+
+// get 3 hour forecast
+async function getHourlyForecast(lat, lon) {
+    const cityForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
+    const response = await fetch(cityForecast)
+    const data = await response.json()
+    return data  
+}
+async function fetchAndDisplayHourlyData(city){
+    try{
+        const location = await getCoordinates(city)
+        const forecastData = await getHourlyForecast(location.lat, location.lon)
+
+        HourlyForecast.innerHTML = ''
+
+        forecastData.list.slice(0,3).forEach(item => {
+            const time = new Date(item.dt *1000).toUTCString().slice(17,22)
+            const temp = item.main.temp.toFixed(1)
+            const weather = item.weather[0].main
+
+            //append
+            HourlyForecast.innerHTML +=`
+                <div>
+                    <p>${time}</p>
+                    <p>${temp} \u00B0C</p>
+                    <p>${weather}</p>
+                </div>
+            `
+        })
+    }catch(error){
+        console.error('error', error)
+    }
 }
