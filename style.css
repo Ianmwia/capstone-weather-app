@@ -103,6 +103,25 @@ button{
     font-size: 24px;
     font-weight: 300;
 }
+/*other data*/
+#other-data{
+    grid-column: 9 / 13;
+    grid-row: 2 / 6;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 20px;
+}
+#other-data p{
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    height: 58px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 300;
+}
+/*hourly forecast*/
 #hourly-forecast{
     grid-column: 1 / 8;
     grid-row: 8 / 9;
@@ -130,10 +149,6 @@ button{
    background-color: #708199;
 }
 
-#other-data{
-    grid-column: 10 / 12;
-    grid-row: 2 / 5;
-}
 #five-day-forecast{
     grid-column: 1 / 12;
     grid-row: 10 / 12;
