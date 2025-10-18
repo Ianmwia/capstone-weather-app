@@ -6,6 +6,7 @@ const form = document.getElementById('form')
 const currentLocation = document.getElementById('current-location')
 const HourlyForecast = document.getElementById('hourly-forecast')
 const otherData = document.getElementById('other-data')
+const dailyForecast = document.getElementById('daily-forecast')
 
 //event listener
 form.addEventListener('submit', (e)=>{
@@ -14,6 +15,7 @@ form.addEventListener('submit', (e)=>{
     const city = locationInput.value
     fetchAndDisplayWeather(city)
     fetchAndDisplayHourlyData(city)
+    fetchAndDisplayDailyForecast(city)
 })
 
 //geocode translate longitude and latitude
@@ -85,7 +87,7 @@ async function fetchAndDisplayHourlyData(city){
 
         HourlyForecast.innerHTML = ''
 
-        forecastData.list.slice(0,3).forEach(item => {
+        forecastData.list.slice(0,5).forEach(item => {
             const time = new Date(item.dt *1000).toUTCString().slice(17,22)
             const temp = item.main.temp.toFixed(1)
             const weather = item.weather[0].main
@@ -96,6 +98,41 @@ async function fetchAndDisplayHourlyData(city){
                     <p>${time}</p>
                     <p>${temp} \u00B0C</p>
                     <p>${weather}</p>
+                </div>
+            `
+        })
+    }catch(error){
+        console.error('error', error)
+    }
+}
+
+//5 day weather forecast
+async function fetchAndDisplayDailyForecast(city){
+    try {
+        const location = await getCoordinates(city)
+        const data = await getHourlyForecast(location.lat, location.lon)
+        dailyForecast.innerHTML = ''
+
+        const days = {}
+
+        //1 forecast a day
+        data.list.forEach(item => {
+            const day = item.dt_txt.split(' ')[0]
+            if (!days[day] || item.dt_txt.includes('12:00:00')){
+                days[day] = item
+            }
+            })
+        
+        Object.values(days).slice(0,5).forEach(item => {
+            const date = new Date(item.dt_txt.split(' ')[0]).toLocaleDateString(undefined, {weekday: 'short', month: 'short', day: 'numeric'})
+            const temp = item.main.temp.toFixed(1)
+            const weather = item.weather[0].main
+        
+            dailyForecast.innerHTML += `
+                <div>
+                <p>${date}</p>
+                <p>${temp}</p>
+                <p>${weather}</p>
                 </div>
             `
         })
