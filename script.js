@@ -131,7 +131,7 @@ async function fetchAndDisplayDailyForecast(city){
             dailyForecast.innerHTML += `
                 <div>
                 <p>${date}</p>
-                <p>${temp}</p>
+                <p>${temp} \u00B0C</p>
                 <p>${weather}</p>
                 </div>
             `
