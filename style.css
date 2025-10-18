@@ -60,17 +60,56 @@ button{
 #hourly-forecast{
     grid-column: 1 / 8;
     grid-row: 8 / 9;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border: 1px solid whitesmoke;
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
+#hourly-forecast > div{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 7px;
+    text-align: center;
+    position: relative;
+}
+#hourly-forecast > div:not(:last-child)::after{
+   content: '';
+   position: absolute;
+   top: 25%;
+   height: 50%;
+   right: 0;
+   width: 2px;
+   background-color: #708199;
+}
+
 #other-data{
     grid-column: 10 / 12;
     grid-row: 2 / 5;
 }
-#seven-day-forecast{
+#five-day-forecast{
     grid-column: 1 / 12;
     grid-row: 10 / 12;
 }
-#seven-day-forecast h2{
+#five-day-forecast h2{
     font-weight: 700;
+    margin-bottom: 10px;
+}
+#daily-forecast{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+#daily-forecast > div{
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid whitesmoke;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+#daily-forecast > div > p{
+    padding-bottom: 5px;
 }
 /*footer*/
 footer{
