@@ -5,6 +5,7 @@ const locationInput = document.getElementById('search')
 const form = document.getElementById('form')
 const currentLocation = document.getElementById('current-location')
 const HourlyForecast = document.getElementById('hourly-forecast')
+const otherData = document.getElementById('other-data')
 
 //event listener
 form.addEventListener('submit', (e)=>{
@@ -53,6 +54,13 @@ async function fetchAndDisplayWeather(city) {
             <p>${locationTime}</p>
             <p>${weather.main.temp.toFixed(1)} \u00B0C</p>
             <p>${weather.weather[0].main}</p>
+        `
+        //fetch other data -- uv humidity, wind speed, uv index
+        //append
+        otherData.innerHTML = `
+            <p>Feels Like: ${weather.main.feels_like.toFixed(1)} \u00B0C</p>
+            <p>Humidity: ${weather.main.humidity} %</p>
+            <p>Wind Speed: ${weather.wind.speed} m/s</p>
         `
 
         //clear input field
