@@ -52,9 +52,11 @@ async function fetchAndDisplayWeather(city) {
 
         //append on html
         currentLocation.innerHTML = `
-            <p>${location.name}</p>
-            <p>${locationTime}</p>
-            <p>${weather.main.temp.toFixed(1)} \u00B0C</p>
+            <div class='top'>
+                <p>${location.name}</p>
+                <p>${locationTime}</p>
+            </div>
+            <p>${weather.main.temp.toFixed(1)} <span class='uni'>\u00B0C</span></p>
             <p>${weather.weather[0].main}</p>
         `
         //fetch other data -- uv humidity, wind speed, uv index
