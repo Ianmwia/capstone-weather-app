@@ -3,6 +3,9 @@
 A weather app built with **HTML**, **CSS** and **Javascript**, utilizing the **OPENWEATHERMAP API** to display current weather, hourly forecast and 5 day forecast
 and hosten on netlify
 
+## Screenshot
+<img src='weather-icons/Weather-App-ss.png'>
+
 ## Technologies
 ![Static Badge](https://img.shields.io/badge/Html-orange?style=for-the-badge&logo=html5&logoColor=white&link=https%3A%2F%2Fhtml.com%2F)
 
