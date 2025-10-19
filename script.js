@@ -104,7 +104,7 @@ async function fetchAndDisplayHourlyData(city){
 
         HourlyForecast.innerHTML = ''
 
-        forecastData.list.slice(0,5).forEach(item => {
+        forecastData.list.slice(0,4).forEach(item => {
             const localTime = new Date((item.dt + timeZoneOffset) *1000)
             const time = localTime.toUTCString().slice(17,22)
             const temp = item.main.temp.toFixed(1)

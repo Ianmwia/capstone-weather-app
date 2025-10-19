@@ -170,9 +170,16 @@ button{
    width: 2px;
    background-color: #708199;
 }
+#hourly-forecast >div p:nth-of-type(1), #hourly-forecast >div p:nth-of-type(2){
+    display: flex;
+    margin-right: 8px;
+}
 #hourly-forecast >div p:nth-of-type(3){
-        text-transform: capitalize;
-    }
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 /*% day forecast*/
 #five-day-forecast{
     grid-column: 1 / 12;
