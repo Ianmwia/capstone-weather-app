@@ -8,6 +8,14 @@ const HourlyForecast = document.getElementById('hourly-forecast')
 const otherData = document.getElementById('other-data')
 const dailyForecast = document.getElementById('daily-forecast')
 
+//weather icons
+const weatherIcons = {
+    clear: '/weather-icons/clear-svg.png',
+    clouds: '/weather-icons/clouds-svg.png',
+    rain: '/weather-icons/rain-svg.png',
+    thunderstorm: '/weather-icons/thunderstorm-svg.png'
+}
+
 //event listener
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
@@ -50,6 +58,10 @@ async function fetchAndDisplayWeather(city) {
         //const locationTime = localTime.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
         const locationTime = localTime.toUTCString().slice(17,22)
 
+        //add weather icons
+        const weatherConditions = weather.weather[0].main.toLowerCase()
+        const iconsPath = weatherIcons[weatherConditions] || '/weather-icons/clear-svg.png'
+
         //append on html
         currentLocation.innerHTML = `
             <div class='top'>
@@ -57,7 +69,7 @@ async function fetchAndDisplayWeather(city) {
                 <p>${locationTime}</p>
             </div>
             <p>${weather.main.temp.toFixed(1)} <span class='uni'>\u00B0C</span></p>
-            <p>${weather.weather[0].main}</p>
+            <p><img src="${iconsPath}">${weatherConditions}</p>
         `
         //fetch other data -- uv humidity, wind speed, uv index
         //append
@@ -92,14 +104,17 @@ async function fetchAndDisplayHourlyData(city){
         forecastData.list.slice(0,5).forEach(item => {
             const time = new Date(item.dt *1000).toUTCString().slice(17,22)
             const temp = item.main.temp.toFixed(1)
-            const weather = item.weather[0].main
+            const weather = item.weather[0].main.toLowerCase()
+
+            //weather icons
+            const iconsPath = weatherIcons[weather] || '/weather-icons/clear-svg.png'
 
             //append
             HourlyForecast.innerHTML +=`
                 <div>
                     <p>${time}</p>
                     <p>${temp} \u00B0C</p>
-                    <p>${weather}</p>
+                    <p><img src='${iconsPath}'>${weather}</p>
                 </div>
             `
         })
@@ -128,13 +143,16 @@ async function fetchAndDisplayDailyForecast(city){
         Object.values(days).slice(0,5).forEach(item => {
             const date = new Date(item.dt_txt.split(' ')[0]).toLocaleDateString(undefined, {weekday: 'short', month: 'short', day: 'numeric'})
             const temp = item.main.temp.toFixed(1)
-            const weather = item.weather[0].main
+            const weather = item.weather[0].main.toLowerCase()
+
+            //weather icons
+            const iconsPath = weatherIcons[weather] || '/weather-icons/clear-svg.png'
         
             dailyForecast.innerHTML += `
                 <div>
                 <p>${date}</p>
                 <p>${temp} \u00B0C</p>
-                <p>${weather}</p>
+                <p><img src='${iconsPath}'>${weather}</p>
                 </div>
             `
         })
