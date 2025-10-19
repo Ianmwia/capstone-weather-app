@@ -20,7 +20,7 @@ const weatherIcons = {
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
 
-    const city = locationInput.value
+    const city = locationInput.value || 'London'
     fetchAndDisplayWeather(city)
     fetchAndDisplayHourlyData(city)
     fetchAndDisplayDailyForecast(city)
@@ -164,3 +164,10 @@ async function fetchAndDisplayDailyForecast(city){
         console.error('error', error)
     }
 }
+// add default region because html data is aapended
+window.addEventListener('load', ()=>{
+    const city = 'London'
+    fetchAndDisplayWeather(city)
+    fetchAndDisplayHourlyData(city)
+    fetchAndDisplayDailyForecast(city)
+})
