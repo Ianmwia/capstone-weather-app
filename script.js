@@ -29,7 +29,7 @@ form.addEventListener('submit', (e)=>{
 //geocode translate longitude and latitude
 //geocoding get city name
 async function getCoordinates(city) {
-    const cityUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`
+    const cityUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`
     const result = await fetch(cityUrl)
     const data = await result.json()
     if (!data.length) throw 'City not Found'
