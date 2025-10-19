@@ -103,6 +103,16 @@ button{
     font-size: 24px;
     font-weight: 300;
 }
+/*images*/
+#current-location img{
+    height: 40px;
+}
+#hourly-forecast img{
+    height: 40px;
+}
+#daily-forecast img{
+    height: 40px;
+}
 /*other data*/
 #other-data{
     grid-column: 9 / 13;
@@ -177,4 +187,63 @@ footer{
     padding: 5px 0px;
     text-align: center;
     font-weight: bold;
+}
+
+/*media queeries*/
+@media screen and (max-width: 425px){
+    main{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+    }
+    #form{
+        order: 1;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    #current-weather, #other-data, #hourly-forecast, #five-day-forecast{
+        order: 2;
+        width: auto;
+    }
+    #current-location{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #hourly-forecast{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    #hourly-forecast >div{
+        padding: 4px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: end;
+        font-size: 18px;
+    }
+    #hourly-forecast >div:not(:last-child)::after{
+        content: none;
+    }
+
+    #daily-forecast{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 100%;
+    }
+    #daily-forecast > div{
+        width: auto;
+        text-align: center;
+        padding: 12px;
+    }
+    #five-day-forecast{
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
 }
