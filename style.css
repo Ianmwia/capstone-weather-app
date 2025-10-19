@@ -26,11 +26,18 @@ main{
 
 /*nav*/
 nav{
-    margin-bottom: 3px;
-    padding: 8px;
+    margin-bottom: 7px;
+    padding: 11px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+nav img{
+    height: 40px;
 }
 nav h1{
     font-weight: 800;
+    color: black;
 }
 /*main*/
 #form{
@@ -41,6 +48,9 @@ nav h1{
     justify-content: flex-end;
     gap: 10px;
     margin-bottom: 10px;
+}
+form input{
+    flex: 1;
 }
 input, button{
     border-radius: 8px;
@@ -210,6 +220,9 @@ footer{
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
+    }
+    #form input{
+        flex: none;
     }
     #current-weather, #other-data, #hourly-forecast, #five-day-forecast{
         order: 2;
