@@ -76,7 +76,7 @@ async function fetchAndDisplayWeather(city) {
         otherData.innerHTML = `
             <p>Feels Like: ${weather.main.feels_like.toFixed(1)} \u00B0C</p>
             <p>Humidity: ${weather.main.humidity} %</p>
-            <p>Wind Speed: ${weather.wind.speed} m/s</p>
+            <p>Wind Speed: ${(weather.wind.speed *3.6).toFixed(1)} km/h</p>
         `
 
         //clear input field
