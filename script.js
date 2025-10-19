@@ -97,12 +97,16 @@ async function getHourlyForecast(lat, lon) {
 async function fetchAndDisplayHourlyData(city){
     try{
         const location = await getCoordinates(city)
+        const currentWeather = await getWeather(location.lat, location.lon)
+        const timeZoneOffset = currentWeather.timezone
+
         const forecastData = await getHourlyForecast(location.lat, location.lon)
 
         HourlyForecast.innerHTML = ''
 
         forecastData.list.slice(0,5).forEach(item => {
-            const time = new Date(item.dt *1000).toUTCString().slice(17,22)
+            const localTime = new Date((item.dt + timeZoneOffset) *1000)
+            const time = localTime.toUTCString().slice(17,22)
             const temp = item.main.temp.toFixed(1)
             const weather = item.weather[0].main.toLowerCase()
 
